@@ -1,13 +1,10 @@
 import { useState } from 'react';
 
-function Events() {
-  const [value, setValue] = useState('');
+function EventsObj() {
+  const [form, setForm] = useState({ username: "", password: "" });
 
   const handleInputChange = (event) => {
-    setValue(event.target.value);
-    console.log(event.target);
-    console.log(event.target.name);
-    console.log(event.target.value);
+    setForm({ ...form, [event.target.name]: event.target.value });
   };
 
   return (
@@ -15,14 +12,23 @@ function Events() {
       <input
         type="text"
         className="outline-indigo-600 outline rounded-sm p-2 outline-1"
-        value={value}
+        value={form.username}
         name="username"
         placeholder="Enter your username"
         onChange={handleInputChange}
       />
-      <p>Username: {value}</p>
+      <input
+        type="text"
+        className="outline-indigo-600 outline rounded-sm p-2 outline-1 mt-2"
+        value={form.password}
+        name="password"
+        placeholder="Enter your password"
+        onChange={handleInputChange}
+      />
+      <p>Username: {form.username}</p>
+      <p>Password: {form.password}</p>
     </div>
   );
 }
 
-export default Events;
+export default EventsObj;
