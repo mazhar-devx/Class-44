@@ -1,11 +1,11 @@
 import React from 'react'
 import './App.css'
-import Example2 from './components/useState/Example2/Example2'
+import Example3 from './components/useState/Example3/Example3'
 function App() {
 
   return (
     <>
-   <Example2/>
+   <Example3/>
     </>
   )
 }
