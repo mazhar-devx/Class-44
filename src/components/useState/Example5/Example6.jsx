@@ -1,26 +1,28 @@
-import { useState } from "react";
-import Button from "../../ui/Button/Button";
+import { useState } from 'react';
 
-const Example6 = () => {
-  const [count, setCount] = useState(() => {
-    return localStorage.getItem("count")
-      ? parseInt(localStorage.getItem("count"))
-      : 0;
-  });
+function Events() {
+  const [value, setValue] = useState('');
 
-  const increment = () => {
-    setCount((prevCount) => {
-      return prevCount + 1;
-    });
-    localStorage.setItem("count", count);
+  const handleInputChange = (event) => {
+    setValue(event.target.value);
+    console.log(event.target);
+    console.log(event.target.name);
+    console.log(event.target.value);
   };
 
   return (
-    <div>
-      <p>Count: {count}</p>
-      <Button onClick={increment}>Increment</Button>
+    <div className="m-4">
+      <input
+        type="text"
+        className="outline-indigo-600 outline rounded-sm p-2 outline-1"
+        value={value}
+        name="username"
+        placeholder="Enter your username"
+        onChange={handleInputChange}
+      />
+      <p>Username: {value}</p>
     </div>
   );
-};
+}
 
-export default Example6;
+export default Events;
