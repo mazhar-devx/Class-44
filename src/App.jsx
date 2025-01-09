@@ -1,9 +1,8 @@
 import React from 'react'
 import './App.css'
 import MainPage from "./pages/Page1/MainPage"
-// let buttons = document.querySelectorAll(".click");
 function App() {
-  let num = localStorage.getItem("num")
+  let num = localStorage.getItem("num") ? localStorage.getItem("num"): 1;
   console.log(num)
   if (num == 1) {
    return <MainPage id= {1}/>

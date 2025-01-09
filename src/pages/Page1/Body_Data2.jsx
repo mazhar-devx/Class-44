@@ -1,13 +1,13 @@
 import React from "react";
-import { FaArrowDown } from "react-icons/fa6";
 import Chart1 from "./Chart1"
 import Up_Down_counter_box from "../../components/Up_Down_counter_box";
 import { IoArrowUp } from "react-icons/io5";
- function Body_Data() {
+ function Body_Data(props) {
+  let ArrowIcon = props.icon
   return (
     <div className="flex flex-col gap-5">
       <div className="flex justify-between items-center w-full bg-white shadow-lg rounded-xl p-5">
-        <Up_Down_counter_box Bg1="bg-[#fdf9cd]" Bg2="bg-[#c6fedb]" text1= "8,490" text2= "8,490" color1 = "text-[#b8914d]" color2 = "text-[#4a8e66]" icon1 = {FaArrowDown} icon2 = {IoArrowUp} />
+        <Up_Down_counter_box Bg1={props.Bg1} Bg2={props.Bg2} color1 = {props.color1} color2 = {props.color2} icon1 = {props.icon1} icon2 = {props.icon2} text1= {props.topText1} text2= {props.topText2}  />
       </div>
       <div className="p-5 bg-white shadow-lg rounded-xl flex flex-col justify-between">
         <div className="pt-4 flex flex-col gap-7">
@@ -17,13 +17,13 @@ import { IoArrowUp } from "react-icons/io5";
                 TOTAL NEW USERS
               </div>
               <div className="flex items-center gap-1">
-                <div className="h-6 w-6 bg-[#c0fdd7] rounded-full flex items-center justify-center">
-                  <IoArrowUp className="text-[#4a8e66]" />
+                <div className={`h-6 w-6 ${props.iconBg1} rounded-full flex items-center justify-center`}>
+                  <ArrowIcon className={props.ArrowColor} />
                 </div>
-                <div className="font-medium text-[#458663]">15,52%</div>
+                <div className={`${props.colorText} font-medium `}>{props.text2}</div>
               </div>
             </div>
-            <div className="text-6xl font-bold text-black">5,9k</div>
+            <div className="text-6xl font-bold text-black">{props.text1}</div>
           </div>
           <Chart1/>
         </div>
