@@ -1,15 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react'
 import All_Inputs from './All_Inputs'
 import img from "../assets/b.png"
-localStorage.setItem("page" , 3)
-function Password (event){
-localStorage.setItem("Password", event.target.value)
-}
+
 function ArrowClick(){
   localStorage.setItem("page" , 1)
   window.location.reload()
 }
 function WelcomePage(props) {
+  const [value , setValue] = useState(true)
+  localStorage.setItem("page" , 3)
+  function Password (event){
+    setValue(false)
+    localStorage.setItem("Password", event.target.value)
+   }
+  let a = localStorage.getItem("Password")
+  if (a) {
+    if (value) { 
+      localStorage.removeItem("Password")
+    }
+  }
   return (
     <div className="flex flex-col items-center w-full gap-6">
         <div onClick={ArrowClick} className="fixed top-5 left-5 cursor-pointer">
