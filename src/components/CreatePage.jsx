@@ -1,30 +1,41 @@
 import {useState} from "react";
 import All_Inputs from "./All_Inputs";
+import img from "../assets/b.png"
+localStorage.setItem("page" , 2)
+let boolen  = true;
+function ArrowClick(){
+  localStorage.setItem("page" , 1)
+  window.location.reload()
+}
 function CreatePage(props) {
   const [value , setValue] = useState(()=>{
       return localStorage.getItem("EmailUser_With_Password") ? JSON.parse(localStorage.getItem("EmailUser_With_Password")) : {email:null , password: null}
     });
-    function Password(event){
+    localStorage.setItem("submit_pwd" , 2)
+    if (boolen) {
       let a = localStorage.getItem("currentPassword")
      if (a) {
       localStorage.removeItem("currentPassword")
-     }
-      if (event.target.value.length >= 5) {
-        
-        localStorage.setItem("currentPassword" , event.target.value)
-        let oldEmail = JSON.parse(localStorage.getItem("EmailUser"))
+     } 
+    }
+    function Password(event){
+     boolen = false;
+      localStorage.setItem("currentPassword" , event.target.value)
+      let oldEmail = JSON.parse(localStorage.getItem("EmailUser"))
         if (oldEmail) {
           setValue({
             email: oldEmail,
             password: event.target.value
           })
           localStorage.setItem("EmailUser_With_Password", JSON.stringify({email: oldEmail , password: event.target.value}))
-          console.log(value)
+          console.log(value) 
         }
-      }
     }
   return (
     <div className="w-full flex items-center flex-col gap-8 ">
+      <div onClick={ArrowClick} className="fixed top-5 left-5 cursor-pointer">
+        <img src={img} alt="" className="h-10 w-10" />
+      </div>
       <div className="w-full text-center max-w-[70%]">
         <div className="font-bold text-xl ">Create account</div>
         <div className="text-[#979b9f] font-medium">
@@ -50,7 +61,7 @@ function CreatePage(props) {
           <label htmlFor="Password" className="font-bold">
             Password*
           </label>
-          <All_Inputs type="text" onChange={Password} placeholder="Enter your Password atlist 5 digit" className="border border-[#e3e3e3] rounded-lg p-3 shadow-sm"/>
+          <All_Inputs type="text" onChange={Password} placeholder="Enter your Password" className="border border-[#e3e3e3] rounded-lg p-3 shadow-sm"/>
         </div>
         <div className="flex flex-col gap-2">
           <label htmlFor="phonenumber" className="font-bold">

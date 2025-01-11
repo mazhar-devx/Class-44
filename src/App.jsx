@@ -6,17 +6,14 @@ import CreatePage from "./components/CreatePage";
 import LoginPage from "./components/LoginPage";
 import WelcomePage from "./components/WelcomePage";
 import Dashboard from "./components/Dashboard";
-
 // import { CgPassword } from "react-icons/cg";
 function App() {
-
   let [currentPage, setPage] = useState("LoginPage");
 
   let ButtonClick = () => {
     let value = JSON.parse(localStorage.getItem("EmailUser")) ? JSON.parse(localStorage.getItem("EmailUser")) : null;
     let value1 = localStorage.getItem("EmailUser_With_Password") ? JSON.parse(localStorage.getItem("EmailUser_With_Password")): { email: null, password: null };
     if (value1.email) {
-      // let newemail = document.getElementById("email").value;
       if (value == value1.email) {
         setPage((currentPage = "WelcomePage"));
       }
@@ -31,6 +28,7 @@ function App() {
     }
   };
   let ButtonClick1 = () => {
+    localStorage.setItem("trueFalse", true)
     let value1 = localStorage.getItem("EmailUser_With_Password")
     ? JSON.parse(localStorage.getItem("EmailUser_With_Password"))
     : { email: null, password: null };
@@ -53,26 +51,31 @@ function App() {
         setPage((currentPage = "Dashboard"));
       }
       else{
-        setPage((currentPage = "WelcomePage"));
+        alert("soory your password is still wroing you can try again")
+        // setPage((currentPage = "WelcomePage"));
       }
     }
+    else{
+      alert("please add input data ")
+    }
   };
+
+  let page =   localStorage.getItem("page")
+  console.log(page )
   let Pages = () => {
-    if (currentPage == "CreatePage") {
     let value = JSON.parse(localStorage.getItem("EmailUser")) ? JSON.parse(localStorage.getItem("EmailUser")) : null;
+    if (currentPage == "CreatePage") {
     if (value) {
       return <CreatePage onBtnClick={ButtonClick1} Email={value} />;
     }
     } else if (currentPage == "LoginPage") {
       return <LoginPage onBtnClick={ButtonClick} />;
     } else if (currentPage == "WelcomePage") {
-      let value = JSON.parse(localStorage.getItem("EmailUser")) ? JSON.parse(localStorage.getItem("EmailUser")) : null;
       if (value) {
       return <WelcomePage onBtnClick={ButtonClick2} Email = {value}/>;
       }
     }
     else if(currentPage == "Dashboard"){
-      let value = JSON.parse(localStorage.getItem("EmailUser")) ? JSON.parse(localStorage.getItem("EmailUser")) : null;
     if (value) {
       return <Dashboard Email = {value}/>
     }

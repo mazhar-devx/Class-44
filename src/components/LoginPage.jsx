@@ -1,25 +1,32 @@
 import { useState } from "react";
 import All_Inputs from "./All_Inputs";
 import Data from "./Data1";
+let boolen = true;
+localStorage.setItem("page" , 1)
 function LoginPage(data) {
   const [value, setValue] = useState(() => {
     return localStorage.getItem("EmailUser")
       ? JSON.parse(localStorage.getItem("EmailUser"))
       : null;
   });
+  if (boolen) {
+    let oldvalue = localStorage.getItem("EmailUser")
+      if (oldvalue) {
+        localStorage.removeItem("EmailUser")
+      }
+  }
   function MdEmail_Data(event) {
+boolen = false;
     let oldvalue = localStorage.getItem("EmailUser")
     if (oldvalue) {
       localStorage.removeItem("EmailUser")
     }
     if (event.target.value.includes("@gmail.com")) {
       setValue(event.target.value);
-      console.log(value);
       localStorage.setItem("EmailUser", JSON.stringify(event.target.value));
     }
   }
   return (
-
     <div className="flex flex-col items-center w-full gap-6">
       <div className="flex flex-col gap-4 w-[70%] items-center">
         <Data/>
