@@ -2,10 +2,7 @@ import React, { useState } from 'react'
 import All_Inputs from './All_Inputs'
 import img from "../assets/b.png"
 
-function ArrowClick(){
-  localStorage.setItem("page" , 1)
-  window.location.reload()
-}
+
 function WelcomePage(props) {
   const [value , setValue] = useState(true)
   localStorage.setItem("page" , 3)
@@ -21,7 +18,7 @@ function WelcomePage(props) {
   }
   return (
     <div className="flex flex-col items-center w-full gap-6">
-        <div onClick={ArrowClick} className="fixed top-5 left-5 cursor-pointer">
+        <div onClick={props.ArrowClick} className="fixed top-5 left-5 cursor-pointer">
               <img src={img} alt="" className="h-10 w-10" />
             </div>
           <div className="flex flex-col gap-4 w-[70%] items-center">

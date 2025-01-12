@@ -2,8 +2,8 @@ import { useState } from "react";
 import All_Inputs from "./All_Inputs";
 import Data from "./Data1";
 let boolen = true;
-localStorage.setItem("page" , 1)
 function LoginPage(data) {
+  localStorage.setItem("page" , 1)
   const [value, setValue] = useState(() => {
     return localStorage.getItem("EmailUser")
       ? JSON.parse(localStorage.getItem("EmailUser"))

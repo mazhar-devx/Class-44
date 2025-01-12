@@ -39,7 +39,10 @@ function App() {
       }
     }
   };
-
+  let backButton = ()=>{
+    setPage((currentPage = "LoginPage"))
+    window.location.reload()
+  }
   let ButtonClick2 = () => {
     let value = JSON.parse(localStorage.getItem("EmailUser")) ? JSON.parse(localStorage.getItem("EmailUser")) : null;
     let value1 = localStorage.getItem("EmailUser_With_Password")
@@ -61,18 +64,29 @@ function App() {
   };
 
   let page =   localStorage.getItem("page")
-  console.log(page )
+  console.log(page)
+  // if (page) {
+  //   if (page == 1) {
+  //     setPage((currentPage = "LoginPage"));
+  //   }
+  //   else if(page == 2){
+  //     setPage((currentPage = "CreatePage"));
+  //   }
+  //   else if (page == 3) {
+  //     setPage((currentPage = "WelcomePage"));
+  //   }
+  // }
   let Pages = () => {
     let value = JSON.parse(localStorage.getItem("EmailUser")) ? JSON.parse(localStorage.getItem("EmailUser")) : null;
     if (currentPage == "CreatePage") {
     if (value) {
-      return <CreatePage onBtnClick={ButtonClick1} Email={value} />;
+      return <CreatePage onButtonBack = {backButton} onBtnClick={ButtonClick1} Email={value} />;
     }
     } else if (currentPage == "LoginPage") {
       return <LoginPage onBtnClick={ButtonClick} />;
     } else if (currentPage == "WelcomePage") {
       if (value) {
-      return <WelcomePage onBtnClick={ButtonClick2} Email = {value}/>;
+      return <WelcomePage ArrowClick = {backButton} onBtnClick={ButtonClick2} Email = {value}/>;
       }
     }
     else if(currentPage == "Dashboard"){

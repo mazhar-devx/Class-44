@@ -1,13 +1,9 @@
 import {useState} from "react";
 import All_Inputs from "./All_Inputs";
 import img from "../assets/b.png"
-localStorage.setItem("page" , 2)
 let boolen  = true;
-function ArrowClick(){
-  localStorage.setItem("page" , 1)
-  window.location.reload()
-}
 function CreatePage(props) {
+  localStorage.setItem("page" , 2)
   const [value , setValue] = useState(()=>{
       return localStorage.getItem("EmailUser_With_Password") ? JSON.parse(localStorage.getItem("EmailUser_With_Password")) : {email:null , password: null}
     });
@@ -33,7 +29,7 @@ function CreatePage(props) {
     }
   return (
     <div className="w-full flex items-center flex-col gap-8 ">
-      <div onClick={ArrowClick} className="fixed top-5 left-5 cursor-pointer">
+      <div onClick={props.onButtonBack} className="fixed top-5 left-5 cursor-pointer">
         <img src={img} alt="" className="h-10 w-10" />
       </div>
       <div className="w-full text-center max-w-[70%]">
